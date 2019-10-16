@@ -645,6 +645,7 @@ typedef void (^AIOUploadCompletionBlock)(id _Nullable response, NSError * _Nulla
 
 - (void)uploadFileToAcquire:(NSString * __nonnull)filePath progress:(AIOUploadProgressBlock __nonnull)progress completion:(AIOUploadCompletionBlock __nonnull)completion;
 
+- (void)reConnect;
 @end
 
 
@@ -777,5 +778,6 @@ typedef void (^AIOUploadCompletionBlock)(id _Nullable response, NSError * _Nulla
  @available Available in SDK version 2.0.6 or later
  */
 -(void) didUserInteractedWithEvent:(AcquireIOInteractionEventType) type;
+
 
 @end
