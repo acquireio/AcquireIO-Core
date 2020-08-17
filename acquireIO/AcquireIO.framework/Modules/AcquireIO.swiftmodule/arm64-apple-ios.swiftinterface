@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.1.3 effective-4.1.50 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
-// swift-module-flags: -target arm64-apple-ios8.2 -enable-objc-interop -enable-library-evolution -swift-version 4 -enforce-exclusivity=checked -Osize -module-name AcquireIO
+// swift-compiler-version: Apple Swift version 5.2.2 (swiftlang-1103.0.32.6 clang-1103.0.32.51)
+// swift-module-flags: -target arm64-apple-ios8.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Osize -module-name AcquireIO
 @_exported import AcquireIO
 import CommonCrypto
 import CoreFoundation
@@ -33,7 +33,7 @@ open class StarScreamSSLSecurity : AcquireIO.SSLTrustValidator {
   @objc final public let engineQueue: Dispatch.DispatchQueue
   @objc public var connectParams: [Swift.String : Any]? {
     @objc get
-    @objc set(newValue)
+    @objc set(value)
   }
   @objc public var extraHeaders: [Swift.String : Swift.String]?
   public var postWait: [AcquireIO.Post]
@@ -41,56 +41,56 @@ open class StarScreamSSLSecurity : AcquireIO.SSLTrustValidator {
   public var waitingForPost: Swift.Bool
   @objc public var closed: Swift.Bool {
     get
-    }
+  }
   @objc public var compress: Swift.Bool {
     get
-    }
+  }
   @objc public var connected: Swift.Bool {
     get
-    }
+  }
   @objc public var cookies: [Foundation.HTTPCookie]? {
     get
-    }
+  }
   @objc public var fastUpgrade: Swift.Bool {
     get
-    }
+  }
   @objc public var forcePolling: Swift.Bool {
     get
-    }
+  }
   @objc public var forceWebsockets: Swift.Bool {
     get
-    }
+  }
   public var invalidated: Swift.Bool {
     get
-    }
+  }
   @objc public var polling: Swift.Bool {
     get
-    }
+  }
   @objc public var probing: Swift.Bool {
     get
-    }
+  }
   public var session: Foundation.URLSession? {
     get
-    }
+  }
   @objc public var sid: Swift.String {
     get
-    }
+  }
   @objc public var socketPath: Swift.String {
     get
-    }
+  }
   @objc public var urlPolling: Foundation.URL {
     get
-    }
+  }
   @objc public var urlWebSocket: Foundation.URL {
     get
-    }
+  }
   @available(*, deprecated, message: "No longer needed, if we're not polling, then we must be doing websockets")
   @objc public var websocket: Swift.Bool {
     get
-    }
+  }
   @objc public var ws: AcquireIO.WebSocket? {
     get
-    }
+  }
   @objc weak public var client: AcquireIO.SocketEngineClient?
   public init(client: AcquireIO.SocketEngineClient, url: Foundation.URL, config: AcquireIO.SocketIOClientConfiguration)
   @objc required public convenience init(client: AcquireIO.SocketEngineClient, url: Foundation.URL, options: [Swift.String : Any]?)
@@ -187,13 +187,13 @@ public enum SocketIOClientOption {
   }
   public static func == (lhs: AcquireIO.SocketIOClientOption, rhs: AcquireIO.SocketIOClientOption) -> Swift.Bool
 }
-@objc open class SSLSecurity : ObjectiveC.NSObject {
+@objc @_hasMissingDesignatedInitializers open class SSLSecurity : ObjectiveC.NSObject {
   final public let security: AcquireIO.StarScreamSSLSecurity
   @objc public convenience init(usePublicKeys: Swift.Bool = true)
   public convenience init(certs: [AcquireIO.SSLCert], usePublicKeys: Swift.Bool)
   public func isValid(_ trust: Security.SecTrust, domain: Swift.String?) -> Swift.Bool
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
 public enum SocketAckStatus : Swift.String {
   case noAck
@@ -250,13 +250,13 @@ public class SSLClientCertificate {
   }
   public var anyHandler: ((AcquireIO.SocketAnyEvent) -> ())? {
     get
-    }
+  }
   public var handlers: [AcquireIO.SocketEventHandler] {
     get
-    }
+  }
   @objc weak public var manager: AcquireIO.SocketManagerSpec? {
     get
-    }
+  }
   @objc public var rawEmitView: AcquireIO.SocketRawView {
     @objc get
   }
@@ -306,10 +306,10 @@ public struct SocketPacket : Swift.CustomStringConvertible {
   public let type: AcquireIO.SocketPacket.PacketType
   public var binary: [Foundation.Data] {
     get
-    }
+  }
   public var data: [Any] {
     get
-    }
+  }
   public var args: [Any] {
     get
   }
@@ -352,7 +352,7 @@ extension SocketPacket {
   @objc func parseEngineBinaryData(_ data: Foundation.Data)
   @objc func engineDidWebsocketUpgrade(headers: [Swift.String : Swift.String])
 }
-@objc final public class SocketRawView : ObjectiveC.NSObject {
+@objc @_hasMissingDesignatedInitializers final public class SocketRawView : ObjectiveC.NSObject {
   final public func emit(_ event: Swift.String, _ items: AcquireIO.SocketData...)
   @objc final public func emit(_ event: Swift.String, with items: [Any])
   final public func emitWithAck(_ event: Swift.String, _ items: AcquireIO.SocketData...) -> AcquireIO.OnAckCallback
@@ -360,11 +360,11 @@ extension SocketPacket {
   @objc override dynamic public init()
   @objc deinit
 }
-@objc final public class SocketRawAckView : ObjectiveC.NSObject {
+@objc @_hasMissingDesignatedInitializers final public class SocketRawAckView : ObjectiveC.NSObject {
   final public func with(_ items: AcquireIO.SocketData...)
   @objc final public func with(_ items: [Any])
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
 @objc public protocol SocketEngineSpec {
   @objc var client: AcquireIO.SocketEngineClient? { get set }
@@ -492,10 +492,10 @@ public typealias Post = (msg: Swift.String, completion: (() -> ())?)
   public init(socket: AcquireIO.SocketIOClient, ackNum: Swift.Int)
   final public func with(_ items: AcquireIO.SocketData...)
   @objc final public func with(_ items: [Any])
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
-@objc final public class OnAckCallback : ObjectiveC.NSObject {
+@objc @_hasMissingDesignatedInitializers final public class OnAckCallback : ObjectiveC.NSObject {
   @objc deinit
   @objc final public func timingOut(after seconds: Swift.Double, callback: @escaping AcquireIO.AckCallback)
   @objc override dynamic public init()
@@ -523,14 +523,14 @@ extension SocketEngineWebsocket {
     get
   }
 }
-@objc final public class SocketAnyEvent : ObjectiveC.NSObject {
+@objc @_hasMissingDesignatedInitializers final public class SocketAnyEvent : ObjectiveC.NSObject {
   @objc final public let event: Swift.String
   @objc final public let items: [Any]?
   @objc override final public var description: Swift.String {
     @objc get
   }
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
 public protocol SocketLogger : AnyObject {
   var log: Swift.Bool { get set }
@@ -637,7 +637,7 @@ public protocol WSStream {
   func cleanup()
   func sslTrust() -> (trust: Security.SecTrust?, domain: Swift.String?)
 }
-@objc open class FoundationStream : ObjectiveC.NSObject, AcquireIO.WSStream, Foundation.StreamDelegate {
+@objc @_inheritsConvenienceInitializers open class FoundationStream : ObjectiveC.NSObject, AcquireIO.WSStream, Foundation.StreamDelegate {
   weak public var delegate: AcquireIO.WSStreamDelegate?
   public var enableSOCKSProxy: Swift.Bool
   public func connect(url: Foundation.URL, port: Swift.Int, timeout: Foundation.TimeInterval, ssl: AcquireIO.SSLSettings, completion: @escaping ((Swift.Error?) -> Swift.Void))
@@ -646,8 +646,8 @@ public protocol WSStream {
   public func cleanup()
   public func sslTrust() -> (trust: Security.SecTrust?, domain: Swift.String?)
   @objc open func stream(_ aStream: Foundation.Stream, handle eventCode: Foundation.Stream.Event)
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
 public protocol WebSocketDelegate : AnyObject {
   func websocketDidConnect(socket: AcquireIO.WebSocketClient)
@@ -682,7 +682,7 @@ public protocol WebSocketAdvancedDelegate : AnyObject {
   }
   public static var ErrorDomain: Swift.String
   public var callbackQueue: Dispatch.DispatchQueue
-  public class WSResponse {
+  @_hasMissingDesignatedInitializers public class WSResponse {
     public var code: AcquireIO.WebSocket.OpCode
     public var frameCount: Swift.Int
     public var buffer: Foundation.NSMutableData?

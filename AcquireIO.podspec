@@ -1,8 +1,8 @@
-@version = "2.0.14"
+@version = "2.1.3"
 
 Pod::Spec.new do |s|
 s.name                      = 'AcquireIO'
-s.version                   = '2.0.14'
+s.version                   = '2.1.3'
 s.summary                   = 'Your complete customer communication platform - and not just live chat'
 s.homepage                  = 'https://github.com/acquireio/AcquireIO-Core.git'
 s.license                   = { :type => 'Commercial', :text => 'Copyright (C) 2020 by Acquire' }
